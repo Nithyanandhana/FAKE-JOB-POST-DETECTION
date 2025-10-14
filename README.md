@@ -1,4 +1,4 @@
-Fake Job Post Detection
+Fake Job Post Detection using ML and NLP
 
 A Machine Learning-based web application that detects fake job postings using NLP and classification algorithms.
 The system analyzes job descriptions and predicts whether a job post is Authentic or Fake, helping users avoid scams.
