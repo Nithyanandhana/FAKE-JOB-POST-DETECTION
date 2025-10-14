@@ -1,83 +1,98 @@
-# FAKE-JOB-POST-DETECTION
-A machine learning project to detect fake job postings using NLP, EDA, and classification models.
-🚀 Fake Job Post Detection
-📌 Project Overview
+Fake Job Post Detection
 
-Online recruitment platforms are flooded with both genuine and fraudulent job postings. Fake jobs can lead to financial scams and misuse of personal data.
-This project applies Machine Learning (ML) techniques to detect fake job postings based on job descriptions and related features.
+A Machine Learning-based web application that detects fake job postings using NLP and classification algorithms.
+The system analyzes job descriptions and predicts whether a job post is Authentic or Fake, helping users avoid scams.
 
-🎯 Objectives
+Project Overview
 
-Build a classification model to detect fake job posts.
+With the increasing number of online job scams, it’s crucial to automatically identify fake job listings.
+This project uses Natural Language Processing (NLP) and Machine Learning models to analyze textual job descriptions and determine their authenticity.
 
-Perform EDA (Exploratory Data Analysis) to identify patterns in fraudulent jobs.
+The trained model is integrated with a Flask web application, providing a user-friendly interface where users can enter job descriptions and get instant predictions.
 
-Apply text cleaning, vectorization (TF-IDF), and feature engineering.
+Features
 
-Train and evaluate multiple ML models:
+ Analyze Job Descriptions – Detect if a post is fake or authentic.
 
-Logistic Regression
+ Multiple ML Models Tested – Logistic Regression, Random Forest, LightGBM, XGBoost, LinearSVC, MultinomialNB, and Ensemble models.
 
-Naive Bayes
+ Best Model: Voting Ensemble – Achieved the highest F1-score (~0.73) among all models.
 
-Decision Tree
+ Comprehensive Evaluation – Includes confusion matrices, ROC curves, PR curves, and feature importance plots.
 
-Random Forest
+ Flask Web App – Simple and elegant interface for testing job descriptions.
 
-Support Vector Machine (SVM)
+ Models & Performance
+Model	F1-Score (CV)
+Voting Ensemble	0.73
+LightGBM	0.72
+Random Forest	0.71
+Stacking Ensemble	0.71
+XGBoost	0.69
+LinearSVC	0.62
+Logistic Regression	0.58
+MultinomialNB	0.47
 
-XGBoost
+📈 Voting Ensemble achieved the best results in terms of F1-score.
 
-Compare model performance and select the best fit model.
+ Project Structure
+Fake_Job_Post_Detection/
+│
+├── app/
+│   ├── app.py                  # Flask backend
+│   ├── templates/
+│   │   └── index.html          # Frontend UI
+│   ├── static/
+│       └── styles.css          # Styling
+│
+├── models/
+│   ├── VotingEnsemble_final.joblib
+│   ├── tfidf_vectorizer.joblib
+│   └── other_model_files...
+│
+├── reports/
+│   ├── model_comp_f1_cv.png
+│   ├── cm_*.png, pr_*.png, roc_*.png, feat_imp_*.png
+│   └── cv_summary.csv, test_summary.csv
+│
+├── data/
+│   └── fake_job_postings.csv   # Original dataset
+│
+├── requirements.txt
+├── README.md
+└── .gitignore
 
-Save the final model and vectorizer for deployment-ready predictions.
+ Installation & Setup
+1️⃣ Clone the Repository
+git clone https://github.com/Nithyanandhana/Fake_Job_Post_Detection.git
+cd Fake_Job_Post_Detection
 
-📊 Dataset
+2️⃣ Create a Virtual Environment
+python -m venv venv
+venv\Scripts\activate       # On Windows
 
-Dataset size: 6,841 job postings × 18 features
+3️⃣ Install Dependencies
+pip install -r requirements.txt
 
-Target column: fraudulent (0 = real, 1 = fake)
+4️⃣ Run the Flask App
+cd app
+python app.py
 
-Features:
 
-Text fields (title, company_profile, description, requirements, benefits)
+Your app will start on → http://127.0.0.1:5000/
 
-Numeric fields (telecommuting, has_company_logo, has_questions, etc.)
+ Testing
 
-⚙️ Steps Performed
+Enter any job description in the input box to test whether it is Fake or Authentic.
 
-Data Cleaning – removed missing labels, cleaned text, combined relevant fields.
+ Results Summary
 
-EDA – missingness analysis, correlation heatmap, target distribution.
+Best Performing Model: Voting Ensemble
 
-Feature Engineering – TF-IDF vectorization with unigrams & bigrams.
+Evaluation Metric: F1-Score (to balance precision & recall)
 
-Model Training – tested 6 ML algorithms.
+Vectorization Technique: TF-IDF
 
-Cross-Validation – stratified 5-fold validation.
+Language: Python
 
-Evaluation – accuracy, precision, recall, F1-score, ROC-AUC, confusion matrix.
-
-Hyperparameter Tuning – light tuning with GridSearchCV.
-
-Final Model – Tuned XGBoost achieved the best performance.
-
-📈 Results
-
-Best Model: Tuned XGBoost
-
-Performance: Achieved the highest F1-score and ROC-AUC compared to other models.
-
-Example Predictions:
-
-"Work from home, $5000/week, send bank details" → FAKE
-
-"Infosys hiring Software Engineer via official portal" → REAL
-
-🛠️ Tech Stack
-
-Python
-
-Libraries: Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, XGBoost
-
-Visualization: Confusion Matrix, ROC Curves, Precision-Recall Curves
+Framework: Flask
