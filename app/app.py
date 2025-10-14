@@ -4,16 +4,20 @@ import os
 
 app = Flask(__name__)
 
-# Correct model paths
-MODEL_PATH = os.path.join(os.path.dirname(__file__), '..', 'models', 'VotingEnsemble_final.joblib')
-VEC_PATH = os.path.join(os.path.dirname(__file__), '..', 'models', 'tfidf_vectorizer.joblib')
+# ✅ Use absolute paths
+BASE_DIR = os.path.dirname(__file__)
+MODEL_PATH = os.path.join(BASE_DIR, "..", "models", "VotingEnsemble_final.joblib")
+VEC_PATH = os.path.join(BASE_DIR, "..", "models", "tfidf_vectorizer.joblib")
 
+print("📂 Loading model and vectorizer...")
 try:
     model = joblib.load(MODEL_PATH)
     vectorizer = joblib.load(VEC_PATH)
     print("✅ Model and vectorizer loaded successfully!")
 except Exception as e:
     print(f"❌ Error loading model/vectorizer: {e}")
+    model = None
+    vectorizer = None
 
 @app.route('/')
 def home():
@@ -22,6 +26,9 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    if model is None or vectorizer is None:
+        return render_template('index.html', result="❌ Model not loaded properly.")
+    
     print("🔍 Predict route called")
     text = request.form['text']
     features = vectorizer.transform([text])
