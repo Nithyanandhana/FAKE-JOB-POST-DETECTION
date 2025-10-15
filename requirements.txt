@@ -1,0 +1,31 @@
+# Core
+numpy
+pandas
+scikit-learn
+scipy
+joblib
+gunicorn
+
+# NLP / Text processing
+nltk
+regex
+textblob
+
+# Machine Learning Models
+xgboost
+lightgbm
+catboost
+
+# Visualization
+matplotlib
+seaborn
+
+# Imbalanced data handling
+imblearn
+
+# Web deployment (optional)
+flask
+streamlit
+
+# Others / utilities
+tqdm
